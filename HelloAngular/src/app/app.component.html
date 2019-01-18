@@ -1,0 +1,19 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Hello {{ title }}!
+  </h1>
+</div>
+<section>
+  <div>
+    <ul>
+      <li *ngFor="let item of  drinkList">
+        {{item.Attractions}}
+        &nbsp;
+        {{item.AtCity}}
+      </li>
+    </ul>
+    {{sDate.DemoDate | date: 'yyyy-MM-dd HH:mm:ss' }}
+  </div>
+</section>
+
