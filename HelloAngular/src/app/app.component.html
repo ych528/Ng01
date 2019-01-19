@@ -13,7 +13,21 @@
         {{item.AtCity}}
       </li>
     </ul>
-    {{sDate.DemoDate | date: 'yyyy-MM-dd HH:mm:ss' }}
+    <div>
+      <span>Today:</span>
+      <span>{{sDate.currentDate | date: 'yyyy-MM-dd HH:mm:ss' }}</span>
+    </div>
+    <div>
+      <span>Tomorrow:</span>
+      <span>{{sDate.tomorrowDate | date: 'yyyy-MM-dd HH:mm:ss' }}</span>
+    </div>
+
+    <div>
+      <span>AddDays:</span>
+      <input type="number" [(ngModel)]="addNum">
+      <span>Result: </span>
+      <span>{{sDate.AddDays(addNum) | date: 'yyyy-MM-dd HH:mm:ss' }}</span>
+    </div>
   </div>
 </section>
 

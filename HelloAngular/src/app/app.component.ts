@@ -23,4 +23,5 @@ export class AppComponent {
     },
   ];
   sDate = new SampleDate();
+  addNum = 3;
 }
