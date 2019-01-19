@@ -1,0 +1,32 @@
+<form (ngSubmit)="AddMsg()">
+  <div>
+    <div>your name</div>
+    <div>
+      <input type="text" name="yourName" [(ngModel)]="yourName">
+    </div>
+  </div>
+  <div>
+    <div>your message</div>
+    <div>
+      <input type="text" name="yourMsg" [(ngModel)]="yourMsg">
+    </div>
+  </div>
+  <div>
+    <button>send</button>
+  </div>
+</form>
+
+<ng-container *ngFor="let item of MsgsObj">
+  <div>
+    <span>Last Name: </span>
+    <span>{{ item.yName }}</span>
+  </div>
+  <div>
+    <span>Last Message: </span>
+    <span>{{ item.yMsg }}</span>
+  </div>
+  <div>
+    <span>{{ item.lTime |  date: 'yyyy-MM-dd HH:mm:ss' }}</span>
+  </div>
+  <hr/>
+</ng-container>
