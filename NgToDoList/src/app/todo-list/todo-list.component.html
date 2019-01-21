@@ -2,7 +2,7 @@
   todo-list works!
 </p>
 
-<div>
+<div class="input_section">
   <input type="text"
   placeholder="What needs to be done"
   autofocus
@@ -10,12 +10,16 @@
 </div>
 
 <!--List_Start-->
-<div *ngIf="getList().length">
-  <ul>
-    <li *ngFor="let item of getList()">
-      <div>
-        <input type="checkbox">
-        <label>{{ item }}</label>
+<div *ngIf="getList().length" class="output_section">
+  <ul class="todolist">
+    <li *ngFor="let item of getList()"
+     [class.deleted_line]="item.done"
+     class="todolist_item">
+      <div class="item_content">
+        <input type="checkbox"
+        (click)="item.toggleCompletion()"
+        [checked]="item.done">
+        <label>{{ item.getTitle() }}</label>
         <button>&times;</button>
       </div>
     </li>

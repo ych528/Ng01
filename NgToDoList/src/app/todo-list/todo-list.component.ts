@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoListService } from './todo-list.service';
+import { Todo } from './todo.model';
 
 @Component({
   selector: 'app-todo-list',
@@ -16,14 +17,14 @@ export class TodoListComponent implements OnInit {
   addTodo(inputRef: HTMLInputElement): void {
     console.log(inputRef.value);
     const todo = inputRef.value.trim();
-    if (todo){
+    if (todo) {
       this.togoListService.add(todo);
       inputRef.value = '';
     }
 
   }
 
-  getList(): string[] {
+  getList(): Todo[] {
     return this.togoListService.getList();
   }
 }
