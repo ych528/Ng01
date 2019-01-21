@@ -20,7 +20,7 @@
         (click)="item.toggleCompletion()"
         [checked]="item.done">
         <label>{{ item.getTitle() }}</label>
-        <button>&times;</button>
+        <button (click)="remove(i);">&times;</button>
       </div>
     </li>
   </ul>
