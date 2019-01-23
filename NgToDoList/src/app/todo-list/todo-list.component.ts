@@ -11,6 +11,8 @@ export class TodoListComponent implements OnInit {
 
   constructor(private togoListService: TodoListService) { }
 
+  private isCancel = false;
+
   ngOnInit() {
   }
 
@@ -31,4 +33,31 @@ export class TodoListComponent implements OnInit {
   remove(index: number): void {
     this.togoListService.remove(index);
   }
+
+  edit(todo: Todo): void {
+    todo.editable = true;
+  }
+  update(todo: Todo, newTitle: string): void {
+    if (newTitle.trim()) {
+      todo.setTitle(newTitle.trim());
+      todo.editable = false;
+    } else {
+      const idx = this.getList().indexOf(todo);
+      if ( idx !== -1) {
+        this.remove(idx);
+      }
+    }
+  }
+
+  blureven(todo: Todo, newTitle: string): void {
+    if (!this.isCancel ) {
+      this.update(todo, newTitle);
+    }
+    this.isCancel = false;
+  }
+  cancelEditing(todo: Todo): void {
+    todo.editable = false;
+    this.isCancel = true;
+  }
+
 }

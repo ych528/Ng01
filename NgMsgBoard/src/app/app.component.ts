@@ -10,7 +10,7 @@ export class AppComponent {
   yourName = '';
   yourMsg = '';
   MsgsObj: YourMessage[] = [];
-  AddMsg(): void{
+  AddMsg(): void {
     const Msg = new YourMessage(this.yourName, this.yourMsg);
     this.MsgsObj.push(Msg);
     this.yourMsg = '';

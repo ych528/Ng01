@@ -3,8 +3,8 @@
 </p>
 
 <div class="input_section">
-  <input type="text"
-  placeholder="What needs to be done"
+  <input class="Input_port" type="text"
+  placeholder="key in what needs to be done and key [Enter]"
   autofocus
   (keyup.enter)="addTodo($event.target)">
 </div>
@@ -12,19 +12,31 @@
 <!--List_Start-->
 <div *ngIf="getList().length" class="output_section">
   <ul class="todolist">
-    <li *ngFor="let item of getList()"
+    <li *ngFor="let item of getList(); let i = index"
      [class.deleted_line]="item.done"
      class="todolist_item">
       <div class="item_content">
         <input type="checkbox"
         (click)="item.toggleCompletion()"
         [checked]="item.done">
-        <label>{{ item.getTitle() }}</label>
+        <label (dblclick)="edit(item)">{{ item.getTitle() }}</label>
         <button (click)="remove(i);">&times;</button>
+        <input class="edit" #edittodo
+        *ngIf="item.editing"
+        [value]="item.getTitle()"
+        (blur)="blureven(item, edittodo.value)"
+        (keyup.enter)="update(item, edittodo.value)"
+        (keyup.escape)="cancelEditing(item)">
       </div>
     </li>
   </ul>
 </div>
 <!--List_End-->
+
+<p>mouse [Double Click] to edit</p>
+<p>key [Enter] to finish edit</p>
+<p>key [Esc] to cancel</p>
+
+<h3>practice pipe</h3>
 <div>{{ "Here Is todo-list.component" | myPrefix:'Hello'}}</div>
 <div>{{ "Here Is todo-list.component" | mySuffix:'Hello'}}</div>

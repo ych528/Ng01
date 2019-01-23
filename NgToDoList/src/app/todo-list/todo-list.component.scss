@@ -1,4 +1,9 @@
 div{
+  &.input_section{
+    .Input_port{
+      min-width: 276px;
+    }
+  }
   &.output_section{
     .todolist{
       .todolist_item{
@@ -11,6 +16,12 @@ div{
         }
         .item_content{
           color: #333;
+          .edit{
+            z-index: 9;
+            position: absolute;
+            left: 30px;
+            height: 20px;
+          }
         }
       }
     }
