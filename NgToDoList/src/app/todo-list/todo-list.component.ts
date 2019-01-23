@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoListService } from './todo-list.service';
 import { Todo } from './todo.model';
+import { TodoStatusType } from './todo-status-type.enum';
 
 @Component({
   selector: 'app-todo-list',
@@ -12,6 +13,8 @@ export class TodoListComponent implements OnInit {
   constructor(private togoListService: TodoListService) { }
 
   private isCancel = false;
+  todoStatusType = TodoStatusType;
+  private status = TodoStatusType.All;
 
   ngOnInit() {
   }
@@ -27,7 +30,18 @@ export class TodoListComponent implements OnInit {
   }
 
   getList(): Todo[] {
-    return this.togoListService.getList();
+    let list: Todo[] = [];
+    switch (this.status) {
+      case TodoStatusType.UnFinished:
+        list = this.getUnFinishedList();
+        break;
+        case TodoStatusType.Completed:
+        list = this.getCompletedList();
+        break;
+        default:
+        list = this.togoListService.getList();
+    }
+    return list;
   }
 
   remove(index: number): void {
@@ -37,6 +51,7 @@ export class TodoListComponent implements OnInit {
   edit(todo: Todo): void {
     todo.editable = true;
   }
+
   update(todo: Todo, newTitle: string): void {
     if (newTitle.trim()) {
       todo.setTitle(newTitle.trim());
@@ -60,4 +75,18 @@ export class TodoListComponent implements OnInit {
     this.isCancel = true;
   }
 
+  getCompletedList(): Todo[] {
+    return this.togoListService.getWithCompleted(true);
+  }
+  getUnFinishedList(): Todo[] {
+    return this.togoListService.getWithCompleted(false);
+  }
+
+  setStatus(inStatus: number): void {
+    this.status = inStatus;
+  }
+
+  checkStatus(inStatus: number): boolean {
+    return this.status === inStatus;
+  }
 }

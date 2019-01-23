@@ -2,11 +2,16 @@ div{
   &.input_section{
     .Input_port{
       min-width: 276px;
+      height: 26px;
+      padding: 3px;
+      border-radius: 6px;
+      border: 1.5px solid #a8a2ca;
     }
   }
   &.output_section{
     .todolist{
       .todolist_item{
+        min-height: 30px;
         &.deleted_line{
           text-decoration: line-through;
           color:#666;
@@ -16,12 +21,39 @@ div{
         }
         .item_content{
           color: #333;
+          button{
+            border-radius: 12px;
+          }
+          label{
+            padding: 3px 7px 3px 3px;
+            font-size: 20px;
+            font-family: 'Microsoft JhengHei';
+          }
           .edit{
             z-index: 9;
             position: absolute;
             left: 30px;
-            height: 20px;
+            height: 30px;
+            line-height: 31px;
+            padding: 2px;
+            border-radius: 6px;
+            border: 1px solid #bababa;
+            box-sizing: border-box;
+            font-size: 16px;
           }
+        }
+      }
+    }
+  }
+}
+.footerbar{
+  .statusbar{
+    .statusItem{
+      a{
+        &.active{
+          font-weight: bold;
+          border: 2px solid #bbb;
+          border-radius: 10px;
         }
       }
     }

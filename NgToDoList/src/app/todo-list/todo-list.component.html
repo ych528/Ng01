@@ -19,7 +19,7 @@
         <input type="checkbox"
         (click)="item.toggleCompletion()"
         [checked]="item.done">
-        <label (dblclick)="edit(item)">{{ item.getTitle() }}</label>
+        <label (dblclick)="edit(item)" *ngIf="!item.editing">{{ item.getTitle() }}</label>
         <button (click)="remove(i);">&times;</button>
         <input class="edit" #edittodo
         *ngIf="item.editing"
@@ -31,6 +31,34 @@
     </li>
   </ul>
 </div>
+<p class="footerbar">
+  {{ getUnFinishedList().length }} Item Left
+  <span class="statusbar">
+    <span class="statusItem">
+      <a href="javascript:;"
+      [class.active]="checkStatus(todoStatusType.All)"
+      (click)="setStatus(todoStatusType.All)">
+      All
+      </a>
+    </span>
+    |
+    <span class="statusItem">
+      <a href="javascript:;"
+      [class.active]="checkStatus(todoStatusType.UnFinished)"
+      (click)="setStatus(todoStatusType.UnFinished)">
+      UnFinished
+      </a>
+    </span>
+    |
+    <span class="statusItem">
+      <a href="javascript:;"
+      [class.active]="checkStatus(todoStatusType.Completed)"
+      (click)="setStatus(todoStatusType.Completed)">
+      Completed
+      </a>
+    </span>
+  </span>
+</p>
 <!--List_End-->
 
 <p>mouse [Double Click] to edit</p>
